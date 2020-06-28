@@ -71,6 +71,11 @@ class QuizUpdateView(UpdateView):
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
+        '''
+        This method is an implicit object-level permission management
+        This view will only match the ids of existing quizzes that belongs
+        to the logged in user.
+        '''
         return self.request.user.quizzes.all()
 
     def get_success_url(self):
