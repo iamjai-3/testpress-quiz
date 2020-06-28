@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,7 @@ SECRET_KEY = '2x(gy3ug)gsw3b6%=j@oclug=))+!$202!+9sb1f*x1x(d)b74'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['testpress-quiz.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -74,6 +75,18 @@ TEMPLATES = [
     },
 ]
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD' : 'dreams',
+#         # 'HOST': 'localhost',
+#         'HOST' : 'db',
+#         'PORT':'5432'
+#     }
+# }
+
 WSGI_APPLICATION = 'testpressquiz.wsgi.application'
 
 
@@ -87,10 +100,10 @@ DATABASES = {
     }
 }
 
-import dj_database_url
+# import dj_database_url
 
-db_from_env = dj_database_url.config() 
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config() 
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
