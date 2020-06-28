@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="progress mb-3">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%"></div>
+  </div>
+  <h2 class="mb-3">{{ quiz.name }}</h2>
+  <p class="lead">{{ question.text | safe }}</p>
+  <form action="" method="post" novalidate> 
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Next →</button>
+  </form>
+
+    <script src="{% static 'js/ifvisible.js' %}"></script>
+    <script type="text/javascript">
+        console.log("Scrpit is active");
+         ifvisible.setIdleDuration(30000);
+
+        ifvisible.idle(function(){
+            window.open("{% url 'cheating' %}", "_self");
+        });
+
+        ifvisible.wakeup(function(){
+        console.log('User is again active'); 
+
+        });
+
+        setInterval(function(){
+            var info = ifvisible.getIdleInfo();
+            if(info.timeLeftPer < 3){
+                info.timeLeftPer = 0;
+                info.timeLeft = ifvisible.getIdleDuration();
+            }
+            console.log(parseInt(info.timeLeft / 1000))    
+            //console.log(info)
+        }, 100);
+        document.addEventListener("contextmenu", function(e){
+              console.log("Time out")
+              e.preventDefault();
+        }, false);
+    
+    </script>
+    <style>
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+</style>
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome to the Testpress Online-Quiz<span class="icon-emo-happy"></span></h2>
+<hr>
+<h3>Rules</h3>
+<ol>
+  <li>Registered student should login with your <a href="{% url 'login' %}">Account</a>.</li>
+  <li>The quiz comprises of the logical, technical and non-technical questions.</li>
+  <li>The marking scheme is as follows:</li>
+  <ul>
+    <li>For all successive correct attempts marks would be awarded as +2, where i is the number of questions answered
+      correctly. (Eg. +2,+4,+8…so on)</li>
+    <li>Any wrong attempt/skipping the question will break the streak.</li>
+    <li>Similarly for all successive wrong attempts marks would be deducted as -2.</li>
+
+  </ul>
+</ol>
+<p>
+  <br>
+</p>
+
+{% endblock %}
