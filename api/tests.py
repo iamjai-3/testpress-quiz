@@ -16,12 +16,12 @@ class LoginPageTest(TestCase):
 		self.assertIn(b'Password', response.content)
 		response = self.client.post(loginurl)
 		self.assertIn(b'This field is required.', response.content)
-		response = self.client.post(loginurl, {'username':'bad', 'password':'bad'})
+		response = self.client.post(loginurl, {'username':'testpress', 'password':'testpress123'})
 		self.assertIn(b'Please enter a correct username and password.', response.content)
 
 	def test_login_as_teacher(self):
 		loginurl = reverse('login')
-		response = self.client.post(loginurl, {'username':'sumee', 'password':'sumee1910'}, follow=True)
+		response = self.client.post(loginurl, {'username':'testpress1', 'password':'testpress123'}, follow=True)
 		self.assertEqual(response.redirect_chain[1][0],reverse('teachers:quiz_change_list'))
 		self.assertIn(b'My Quizzes', response.content)
 
